@@ -3,6 +3,7 @@ import LazyLoad from 'react-lazyload';
 import StarRating from './starRating';
 import {calcuateRating} from '../utility/ratingUtility'
 import axios from 'axios';
+import { urlConfig, keys} from "../config/configuration"
 
 export default class MoviesComponent extends React.Component {
     constructor(props){
@@ -12,8 +13,7 @@ export default class MoviesComponent extends React.Component {
        }
     }
     componentDidMount(){
-        const API_KEY = 'k_zi9lnhd1';
-        axios.get(`https://imdb-api.com/en/API/Title/${API_KEY}/${this.props.movie.id}`)
+        axios.get(`${urlConfig.host}/Title/${keys.imdbKey}/${this.props.movie.id}`)
       .then(res => {
         this.setState({plot:res.data.plot})
       })

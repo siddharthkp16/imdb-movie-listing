@@ -5,10 +5,11 @@ import Desktop from "../../shared/Components/DesktopComponent"
 import Mobile from "../../shared/Components/MobileComponent"
 import { Suspense, lazy } from 'react';
 import axios from 'axios';
-
+import { urlConfig, keys} from "../config/configuration"
 export default class HomeComponent extends React.Component {
     constructor(props){
         super(props);
+        
         this.state={
             // movieList123 : [      {
             //     id:"tt0111161",
@@ -237,8 +238,7 @@ export default class HomeComponent extends React.Component {
 
     componentDidMount(){
         //api call()
-        const API_KEY = 'k_zi9lnhd1';
-        axios.get(`https://imdb-api.com/en/API/Top250Movies/${API_KEY}`)
+        axios.get(`${urlConfig.host}/Top250Movies/${keys.imdbKey}`)
       .then(res => {
         this.setState({movieList:res.data.items})
       })
